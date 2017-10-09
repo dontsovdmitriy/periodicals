@@ -1,4 +1,4 @@
-package controller.commands.view;
+package controller.commands.periodical;
 
 import java.io.IOException;
 
@@ -9,9 +9,15 @@ import org.apache.log4j.Logger;
 
 import controller.commands.Command;
 
+/**
+ * The class describes the {@code Command} interface implementation.
+ * It contains a method for showing publisher
+ */
 public class PublisherView implements Command{
-	
-    private static final Logger logger = Logger.getLogger(PublisherView.class);
+
+	private static final String PAGE_TO_GO = "/WEB-INF/view/addPublisher.jsp";
+
+	private static final Logger logger = Logger.getLogger(PublisherView.class);
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
@@ -20,7 +26,6 @@ public class PublisherView implements Command{
 		HttpSession session = request.getSession();
 		logger.info("User " + session.getAttribute("user").toString() + " entered publisher view");
 
-		return "/WEB-INF/view/addPublisher.jsp";
+		return PAGE_TO_GO;
 	}
-
 }

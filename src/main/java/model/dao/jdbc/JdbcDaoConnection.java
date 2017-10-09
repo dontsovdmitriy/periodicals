@@ -16,7 +16,7 @@ public class JdbcDaoConnection implements DaoConnection {
 		super();
 		this.connection = connection;
 	}
-//TODO зачем close
+	
 	@Override
 	public void close() {
 		if(inTransaction) {
@@ -61,11 +61,9 @@ public class JdbcDaoConnection implements DaoConnection {
             logger.error("Error during transaction rollback: ", e);
 			throw new RuntimeException(e);
 		}
-
 	}
 
 	Connection getConnection() {
 		return connection;
 	}
-
 }

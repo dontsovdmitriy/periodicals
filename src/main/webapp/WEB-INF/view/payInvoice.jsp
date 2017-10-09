@@ -16,7 +16,7 @@
 	<form class="form-horizontal" method="POST" action="${pageContext.request.contextPath}/rest/payInvoice">
 	<div class="form-group">
      		 <label class="control-label col-sm-2" for="invoice"><fmt:message key="payInvoice.label.subscription" />:</label>
-     		  <div class="col-sm-6">		  
+     		  <div class="col-sm-8">		  
      			 <select class = "form-control" id="invoice" name="invoice">
      			 	 <c:forEach items="${sessionScope.invoiceList}" var="invoice">
      			 	 	<option value="${invoice.id}"><fmt:message key="payInvoice.label.periodical" />: ${invoice.getSubscription().getPeriodical().getName()}, <fmt:message key="payInvoice.label.startDate" />: ${invoice.getSubscription().getStartDate()}, <fmt:message key="payInvoice.label.numberMonth" />: ${invoice.getSubscription().getNumberMonth()} , <fmt:message key="payInvoice.label.cost" />: <ctg:cost-format cost="${invoice.getCost()}"/></option>

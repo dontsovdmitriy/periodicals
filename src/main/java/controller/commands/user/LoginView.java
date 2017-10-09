@@ -1,4 +1,4 @@
-package controller.commands.view;
+package controller.commands.user;
 
 import java.io.IOException;
 
@@ -9,7 +9,13 @@ import org.apache.log4j.Logger;
 
 import controller.commands.Command;
 
+/**
+ * The class describes the {@code Command} interface implementation.
+ * It contains a method for redirect to a login page
+ */
 public class LoginView implements Command {
+
+	private static final String PAGE_TO_GO = "/WEB-INF/view/login.jsp";
 
     private static final Logger logger = Logger.getLogger(LoginView.class);
 	
@@ -19,8 +25,6 @@ public class LoginView implements Command {
 
 		logger.info("User  entered login view");
 		
-		return "/WEB-INF/view/login.jsp";
-
+		return PAGE_TO_GO;
 	}
-
 }

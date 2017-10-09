@@ -1,4 +1,4 @@
-package controller.commands.view;
+package controller.commands.subscription;
 
 import java.io.IOException;
 
@@ -11,8 +11,14 @@ import controller.commands.Command;
 import model.service.PeriodicalService;
 import model.service.impl.PeriodicalServiceImpl;
 
+/**
+ * The class describes the {@code Command} interface implementation.
+ * It contains a method for showing subscriptions
+ */
 public class SubscriptionView implements Command {
 	
+	private static final String PAGE_TO_GO = "/WEB-INF/view/addSubscription.jsp";
+
     private static final Logger logger = Logger.getLogger(SubscriptionView.class);
 	private PeriodicalService periodicalService = PeriodicalServiceImpl.getInstance();
 
@@ -25,7 +31,6 @@ public class SubscriptionView implements Command {
 
 		logger.info("User " + session.getAttribute("user").toString() + " entered periodical view");
 		
-		return "/WEB-INF/view/addSubscription.jsp";
+		return PAGE_TO_GO;
 	}
-
 }

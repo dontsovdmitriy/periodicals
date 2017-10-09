@@ -57,15 +57,6 @@ public class UserServiceImpl implements UserService {
 				logger.info("User with email = " + email + " didn't find in DB");
 				return Optional.empty();
 			}
-			
-			//TODO удалить
-			
-			/*if (!userDao.findByEmail(email).isPresent()) {
-				logger.info("User with email = " + email + " didn't find in DB");
-				return Optional.empty();
-			}
-
-			Optional<User> user = userDao.findByEmail(email);*/
 
 			if (UtilDao.checkPassword(password, user.get().getPassword())) {
 				logger.info("User with email = " + email + "password check is ok");

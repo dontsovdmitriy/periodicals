@@ -18,6 +18,9 @@ public final class UtilDao {
 	private UtilDao() {
 	}
 
+	/**
+	 * Creates a new periodical using the data from the result set.
+	 */
 	public static Periodical createPeriodical(ResultSet resultSet)  {
 		try {
 			Publisher.Builder publisherBuilder = new Publisher.Builder();
@@ -43,6 +46,9 @@ public final class UtilDao {
 		}
 	}
 
+	/**
+	 * Creates a new periodical category using the data from the result set.
+	 */
 	public static PeriodicalCategory createPeriodicalCategory(ResultSet resultSet)  {
 		try {
 			return new PeriodicalCategory.Builder()
@@ -56,6 +62,9 @@ public final class UtilDao {
 		}
 	}
 
+	/**
+	 * Creates a new publisher using the data from the result set.
+	 */
 	public static Publisher createPublisher(ResultSet resultSet)  {
 		try {
 			return new Publisher.Builder()
@@ -69,6 +78,9 @@ public final class UtilDao {
 		}
 	}
 
+	/**
+	 * Creates a new subscription using the data from the result set.
+	 */
 	public static Subscription createSubscription(ResultSet resultSet)  {
 		try {
 
@@ -94,6 +106,9 @@ public final class UtilDao {
 		}
 	}
 
+	/**
+	 * Creates a new user using the data from the result set.
+	 */
 	public static User createUser(ResultSet resultSet)  {
 		try {
 			return new User.Builder()
@@ -114,6 +129,9 @@ public final class UtilDao {
 		}
 	}
 
+	/**
+	 * Get the password hash using the SHA-256 encoding
+	 */
 	public static String getPasswordHash(String password) {
 		String result = null;
 		try {
@@ -127,6 +145,9 @@ public final class UtilDao {
 		return result;
 	}
 
+	/**
+	 * Check the user entered password using a hash password from the database
+	 */
 	public static boolean checkPassword(String passwordInput, String storedHash) {
 		boolean passwordCorrect = false;
 		if (getPasswordHash(passwordInput).equals(storedHash)) {
@@ -135,6 +156,9 @@ public final class UtilDao {
 		return passwordCorrect;
 	}
 
+	/**
+	 * Creates a new invoice using the data from the result set.
+	 */
 	public static Invoice createInvoice(ResultSet resultSet)  {
 		try {
 
@@ -143,10 +167,10 @@ public final class UtilDao {
 
 			Invoice.Builder invoiceBuilder = new  Invoice.Builder();
 			invoiceBuilder.setId(resultSet.getLong("id"))
-				.setCost(resultSet.getLong("cost"))
-				.setSubscription(subscriptionBuilder.build())
-				.setCreationDate(LocalDate.parse(resultSet.getString("creation_date")))
-				.setStatus(Invoice.Status.valueOf(resultSet.getString("status").toUpperCase()));
+			.setCost(resultSet.getLong("cost"))
+			.setSubscription(subscriptionBuilder.build())
+			.setCreationDate(LocalDate.parse(resultSet.getString("creation_date")))
+			.setStatus(Invoice.Status.valueOf(resultSet.getString("status").toUpperCase()));
 
 			if(resultSet.getString("payment_date")!= null) {
 				invoiceBuilder.setPaymentDate(LocalDate.parse(resultSet.getString("payment_date")));

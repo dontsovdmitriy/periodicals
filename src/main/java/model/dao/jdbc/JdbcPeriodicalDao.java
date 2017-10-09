@@ -22,21 +22,9 @@ public class JdbcPeriodicalDao implements PeriodicalDao {
 			"SET name=?, description=?, cost_per_month=?, publisher_id=?, category_id=?, status=? "
 			 + "WHERE id=?";
 
-	private final boolean connectionShouldBeClosed;
 	private Connection connection;
 
-	JdbcPeriodicalDao(Connection connection) {
-		this.connection = connection;
-		connectionShouldBeClosed = false;
-	}
-
-	public JdbcPeriodicalDao(Connection connection, boolean connectionShouldBeClosed) {
-
-		this.connectionShouldBeClosed = connectionShouldBeClosed;
-		this.connection = connection;
-	}
-
-	public void setConnection(Connection connection) {
+	public JdbcPeriodicalDao(Connection connection) {
 		this.connection = connection;
 	}
 
@@ -85,11 +73,6 @@ public class JdbcPeriodicalDao implements PeriodicalDao {
 			logger.error( message , e);
 			throw new RuntimeException(message, e);
 		}
-	}
-
-	@Override
-	public void delete(long id) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override

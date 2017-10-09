@@ -28,22 +28,9 @@ public class JdbcInvoiceDao implements InvoiceDao{
 			"JOIN subscriptions  ON (invoices.subscription_id = subscriptions.id) " +
 			"WHERE invoices.status = ? AND subscriptions.user_id = ?";
 
-
-	private final boolean connectionShouldBeClosed;
 	private Connection connection;
 
-	JdbcInvoiceDao(Connection connection) {
-		this.connection = connection;
-		connectionShouldBeClosed = false;
-	}
-
-	public JdbcInvoiceDao(Connection connection, boolean connectionShouldBeClosed) {
-
-		this.connectionShouldBeClosed = connectionShouldBeClosed;
-		this.connection = connection;
-	}
-
-	public void setConnection(Connection connection) {
+	public JdbcInvoiceDao(Connection connection) {
 		this.connection = connection;
 	}
 
@@ -68,18 +55,10 @@ public class JdbcInvoiceDao implements InvoiceDao{
 			logger.error( message , e);
 			throw new RuntimeException(message, e);
 		}
-		//TODO зачем это и по закрывать конекшены	
-		//return connectionShouldBeClosed; 
-	}
-
-	@Override
-	public void delete(long id) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public List<Invoice> findAll() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -112,7 +91,7 @@ public class JdbcInvoiceDao implements InvoiceDao{
 			ps.setLong(6, invoice.getId());
 
 			return ps.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			String message = String.format("Exception during update ivoice with id = %s", invoice.getId());
 			logger.error( message , e);

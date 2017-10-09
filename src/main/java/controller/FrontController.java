@@ -1,19 +1,26 @@
+
 package controller;
 
 import java.io.IOException;
 import java.util.*;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
 import controller.commands.*;
-import controller.commands.view.*;
+import controller.commands.invoice.*;
+import controller.commands.periodical.*;
+import controller.commands.subscription.*;
+import controller.commands.user.*;
 
-@WebServlet("/rest/*")
+/**
+ * The class describes the class for the creation of {@code Command} objects.
+ */
 public class FrontController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	
+
+	/**
+	 * Hash map of all available commands.
+	 */
 	private Map<String , Command> commands = new HashMap<>();
 
 	public FrontController() {
@@ -23,7 +30,7 @@ public class FrontController extends HttpServlet {
 	@Override
 	public void init(){
 
-		//Обработка данных
+		//Data processing
 		commands.put("POST:/addRegistration", new AddRegistrationUser());
 		commands.put("POST:/addPublisher", new AddPublisher());
 		commands.put("POST:/addCategory", new AddCategory());
@@ -34,7 +41,7 @@ public class FrontController extends HttpServlet {
 		commands.put("POST:/editPeriodical", new EditPeriodical());
 		commands.put("POST:/payInvoice", new InvoicePay());
 
-		//Обработка форм 
+		//Form processing
 		commands.put("GET:/registration", new RegistrationView());
 		commands.put("GET:/periodical", new PeriodicalView());
 		commands.put("GET:/subscription", new SubscriptionView());
@@ -59,16 +66,22 @@ public class FrontController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request , response);
 	}
-	
+
+	/**
+	 * The method performs some action depending on the {@code Command} object.
+	 *
+	 * @param request http servlet request.
+	 * @param response http servlet response.
+	 * @return the string that describes the path to the corresponding jsp page.
+	 */
 	void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String method = request.getMethod().toUpperCase();
 		String path = request.getRequestURI();
-        path = path.replaceAll(".*/rest", "").replaceAll("/rest", "").replaceAll("\\d+", "");
+		path = path.replaceAll(".*/rest", "").replaceAll("/rest", "").replaceAll("\\d+", "");
 		String key = method+":"+path;
 		Command command = commands.getOrDefault(key, (req , resp)->"/index.jsp" ); 
 		String viewPage = command.execute(request, response);
-		
+
 		request.getRequestDispatcher(viewPage).forward(request, response);
-	
 	}
 }

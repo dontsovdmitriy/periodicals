@@ -93,7 +93,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 			for (Invoice invoice : invoiceList) {
 				Optional<Subscription> subscription = subscriptionDao.find(invoice.getSubscription().getId());
 				if (!subscription.isPresent()) {
-					//TODO что возвращать ?
+					logger.info("Subscription  for user id = "  + user.getId() + " didn't find");
 				}
 				Optional<Periodical> periodical = periodicalDao.find(subscription.get().getPeriodical().getId());
 				if (!periodical.isPresent()) {
@@ -108,31 +108,6 @@ public class InvoiceServiceImpl implements InvoiceService {
 	}
 	
 	public List<Invoice> findInvoiceByStatusUnpaid(User user){
-		try(DaoConnection connection = daoFactory.getConnection()){			
-
-			InvoiceDao invoiceDao = daoFactory.createInvoiceDao(connection);
-			SubscriptionDao subscriptionDao = daoFactory.createSubscriptionDao(connection);
-			PeriodicalDao periodicalDao = daoFactory.createPeriodicalDao(connection);
-
-			List<Invoice> invoiceList = invoiceDao.findAllByUserAndInvoiceStatus(user, Invoice.Status.UNPAID);
-			for (Invoice invoice : invoiceList) {
-				Optional<Subscription> subscription = subscriptionDao.find(invoice.getSubscription().getId());
-				if (!subscription.isPresent()) {
-					logger.info("Subscription  for user id = "  + user.getId() + " didn't find");
-				}
-				Optional<Periodical> periodical = periodicalDao.find(subscription.get().getPeriodical().getId());
-				if (!periodical.isPresent()) {
-					logger.info("Periodical  for user id = "  + user.getId() + " didn't find");
-				}
-				subscription.get().setPeriodical(periodical.get());
-				invoice.setSubscription(subscription.get());
-			}
-			logger.info("Unpaid invoice for user id = "  + user.getId() + " found");
-			return invoiceList;
-		}
-	}
-
-	public List<Invoice> findUnpaidUserInvoices(User user){
 		try(DaoConnection connection = daoFactory.getConnection()){			
 
 			InvoiceDao invoiceDao = daoFactory.createInvoiceDao(connection);

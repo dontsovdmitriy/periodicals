@@ -18,11 +18,8 @@ public class JdbcSubscriptionDao implements SubscriptionDao {
 
 	private static final String INSERT_SUBSCRIPTION = "INSERT INTO subscriptions " + "(user_id, periodical_id, start_date, number_month, address) "
 			+ "VALUES (?, ?, ?, ?, ?)";
-	private static final String IS_PUBLISHER_EXISTS = "SELECT COUNT(id) FROM publishers WHERE publisher = ?";
-	//TODO прописать конкретные поля которые надо получить в select 
 	private static final String SELECT_ALL_SUBSCRIPTION = "SELECT * FROM subscriptions";
 	private static final String SELECT_FROM_SUBSCRIPTION_BY_ID = "SELECT * FROM subscriptions WHERE id = ?";
-	//TODO прописать конкретные поля которые надо получить в select 
 	private static final String SELECT_FROM_SUBSCRIPTION_BY_USER_ID_AND_INVOICE_STATUS = "SELECT * FROM subscriptions " +
 			"WHERE subscriptions.user_id = ? " + 
 			"AND EXISTS (SELECT invoices.id FROM invoices WHERE invoices.subscription_id = subscriptions.id AND invoices.status = ?)"; 
@@ -38,21 +35,9 @@ public class JdbcSubscriptionDao implements SubscriptionDao {
 			"AND start_date <= CURDATE() " + 
 			"HAVING (DATE_ADD(start_date, interval number_month month )>= CURDATE())";
 
-	private final boolean connectionShouldBeClosed;
 	private Connection connection;
 
-	JdbcSubscriptionDao(Connection connection) {
-		this.connection = connection;
-		connectionShouldBeClosed = false;
-	}
-
-	public JdbcSubscriptionDao(Connection connection, boolean connectionShouldBeClosed) {
-
-		this.connectionShouldBeClosed = connectionShouldBeClosed;
-		this.connection = connection;
-	}
-
-	public void setConnection(Connection connection) {
+	public JdbcSubscriptionDao(Connection connection) {
 		this.connection = connection;
 	}
 
@@ -79,20 +64,11 @@ public class JdbcSubscriptionDao implements SubscriptionDao {
 			logger.error( message , e);
 			throw new RuntimeException(message, e);
 		}
-		//TODO зачем это и по закрывать конекшены	
-		//return connectionShouldBeClosed; 
 	}
 
 	@Override
 	public long update(Subscription e) {
 		return 0;
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void delete(long id) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
@@ -136,12 +112,9 @@ public class JdbcSubscriptionDao implements SubscriptionDao {
 		List<Subscription> resultList = new ArrayList<>();
 		try (PreparedStatement ps = connection.prepareStatement(SELECT_FROM_SUBSCRIPTION_BY_USER_ID_AND_INVOICE_STATUS)) {
 
-			/*ps.setString( 1 , status.name().toLowerCase());
-			ps.setLong( 2 , user.getId());*/
-
 			ps.setString( 1 , status.toString().toLowerCase());
-			ps.setLong( 2 , 12);
-
+			ps.setLong( 2 , user.getId());
+		 
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				resultList.add(UtilDao.createSubscription(rs));

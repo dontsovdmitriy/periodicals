@@ -61,7 +61,7 @@ public class Publisher {
 	}
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+	    return String.format("Publisher{id=%d, publisher='%s'}",
+        id, publisher);
 	}	
 }

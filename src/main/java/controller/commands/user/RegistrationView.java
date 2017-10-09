@@ -1,4 +1,4 @@
-package controller.commands.view;
+package controller.commands.user;
 
 import java.io.IOException;
 
@@ -9,7 +9,13 @@ import org.apache.log4j.Logger;
 
 import controller.commands.Command;
 
+/**
+ * The class describes the {@code Command} interface implementation.
+ * It contains a method for redirect to a registration user page
+ */
 public class RegistrationView implements Command {
+	
+	private static final String PAGE_TO_GO = "/WEB-INF/view/registration.jsp";
 	
     private static final Logger logger = Logger.getLogger(RegistrationView.class);
 
@@ -19,7 +25,6 @@ public class RegistrationView implements Command {
 		
 		logger.info("User entered registration view");
 		
-		return "/WEB-INF/view/registration.jsp";
+		return PAGE_TO_GO;
 	}
-
 }

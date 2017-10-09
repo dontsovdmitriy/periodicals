@@ -18,25 +18,12 @@ public class JdbcPeriodicalCategoryDao implements PeriodicalCategoryDao {
 	private static final String SELECT_ALL_CATEGORY = "SELECT * FROM periodical_categories";
 	private static final String SELECT_FROM_PERIODICAL_CATEGORY_BY_ID = "SELECT * FROM periodical_categories WHERE id = ?";
 
-
-	private final boolean connectionShouldBeClosed;
 	private Connection connection;
 
-	JdbcPeriodicalCategoryDao(Connection connection) {
-		this.connection = connection;
-		connectionShouldBeClosed = false;
-	}
-
-	public JdbcPeriodicalCategoryDao(Connection connection, boolean connectionShouldBeClosed) {
-
-		this.connectionShouldBeClosed = connectionShouldBeClosed;
+	public JdbcPeriodicalCategoryDao(Connection connection) {
 		this.connection = connection;
 	}
 
-	public void setConnection(Connection connection) {
-		this.connection = connection;
-	}
-	
 	@Override
 	public long add(PeriodicalCategory category) {
 		try (PreparedStatement ps = connection.prepareStatement(INSERT_CATEGORY, Statement.RETURN_GENERATED_KEYS )){
@@ -55,19 +42,11 @@ public class JdbcPeriodicalCategoryDao implements PeriodicalCategoryDao {
             logger.error( message , e);
 			throw new RuntimeException(message, e);
 		}
-		//TODO зачем это и по закрывать конекшены	
-		//return connectionShouldBeClosed; 
 	}
 
 	@Override
 	public long update(PeriodicalCategory e) {
 		return 0;
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void delete(long id) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override

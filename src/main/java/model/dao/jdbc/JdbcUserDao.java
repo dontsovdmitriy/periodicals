@@ -20,21 +20,9 @@ public class JdbcUserDao implements UserDao {
 	private static final String SELECT_FROM_USER_BY_ID = "SELECT * FROM users WHERE id = ?";
 	private static final String SELECT_FROM_USER_BY_EMAIL = "SELECT * FROM users WHERE email = ?";
 
-	private final boolean connectionShouldBeClosed;
 	private Connection connection;
 
 	JdbcUserDao(Connection connection) {
-		this.connection = connection;
-		connectionShouldBeClosed = false;
-	}
-
-	public JdbcUserDao(Connection connection, boolean connectionShouldBeClosed) {
-
-		this.connectionShouldBeClosed = connectionShouldBeClosed;
-		this.connection = connection;
-	}
-
-	public void setConnection(Connection connection) {
 		this.connection = connection;
 	}
 
@@ -83,17 +71,7 @@ public class JdbcUserDao implements UserDao {
 	@Override
 	public long update(User e) {
 		return 0;
-		// TODO Auto-generated method stub
-
 	}
-
-	@Override
-	public void delete(long id) {
-		// TODO Auto-generated method stub
-
-	}
-
-	//TODO для чего close здесь?
 
 	@Override
 	public boolean loginExistsInDb(String login) {
@@ -113,7 +91,6 @@ public class JdbcUserDao implements UserDao {
 
 	@Override
 	public List<User> findAll() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

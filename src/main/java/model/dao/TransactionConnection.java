@@ -5,12 +5,12 @@ import java.sql.*;
 import org.apache.log4j.Logger;
 
 public class TransactionConnection implements AutoCloseable {
-	
-    private static final Logger logger = Logger.getLogger(TransactionConnection.class);
+
+	private static final Logger logger = Logger.getLogger(TransactionConnection.class);
 
 	private Connection connection;
 	private boolean inTransaction = false;
-	
+
 	TransactionConnection(Connection connection) {
 		super();
 		this.connection = connection;
@@ -62,5 +62,4 @@ public class TransactionConnection implements AutoCloseable {
 	Connection getConnection() {
 		return connection;
 	}
-	
 }

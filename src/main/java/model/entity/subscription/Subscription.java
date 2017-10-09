@@ -3,7 +3,6 @@ package model.entity.subscription;
 import java.time.LocalDate;
 
 import model.entity.periodical.Periodical;
-import model.entity.periodical.Publisher;
 import model.entity.user.User;
 
 public class Subscription {
@@ -128,10 +127,10 @@ public class Subscription {
 		if (user != null ? !user.equals(subscription.user) : subscription.user != null) {
 			return false;
 		}
-		if (periodical != null ? !user.equals(subscription.periodical) : subscription.periodical != null) {
+		if (periodical != null ? !periodical.equals(subscription.periodical) : subscription.periodical != null) {
 			return false;
 		}
-		if (startDate != null ? !user.equals(subscription.startDate) : subscription.startDate != null) {
+		if (startDate != null ? !startDate.equals(subscription.startDate) : subscription.startDate != null) {
 			return false;
 		}
 		if (numberMonth != subscription.numberMonth) {
@@ -142,10 +141,11 @@ public class Subscription {
 		}
 		return true;
 	}
-
+	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+		 return String.format("Subscription{id=%d, user='%s', periodical='%s', startDate='%s', " +
+	                "numberMonth='%d', address='%s'}",
+	        id, user, periodical, startDate, numberMonth, address);
 	}	
 }

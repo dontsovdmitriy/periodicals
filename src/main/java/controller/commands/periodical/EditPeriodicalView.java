@@ -1,4 +1,4 @@
-package controller.commands.view;
+package controller.commands.periodical;
 
 import java.io.IOException;
 
@@ -11,9 +11,15 @@ import controller.commands.Command;
 import model.service.*;
 import model.service.impl.*;
 
+/**
+ * The class describes the {@code Command} interface implementation.
+ * It contains a method for showing periodical for editing
+ */
 public class EditPeriodicalView implements Command {
-	
-    private static final Logger logger = Logger.getLogger(EditPeriodicalView.class);
+
+	private static final String PAGE_TO_GO = "/WEB-INF/view/editPeriodical.jsp";
+
+	private static final Logger logger = Logger.getLogger(EditPeriodicalView.class);
 
 	private PublisherService publisherService = PublisherServiceImpl.getInstance();
 	private PeriodicalCategoryService periodicalCategoryServicelService = PeriodicalCategoryServiceImpl.getInstance();
@@ -29,7 +35,7 @@ public class EditPeriodicalView implements Command {
 		session.setAttribute("periodicalCategoryList", periodicalCategoryServicelService.findAll());
 
 		logger.info("User " + session.getAttribute("user").toString() + " entered edit periodical view");
-		
-		return "/WEB-INF/view/editPeriodical.jsp";
+
+		return PAGE_TO_GO;
 	}
 }

@@ -8,29 +8,88 @@ import org.apache.log4j.Logger;
 
 import model.dao.interfaces.*;
 
+/**
+ * {@code DaoFactory} is the abstract class that describes the behavior of the {@code DaoFactory} object.
+ */
 public abstract class DaoFactory {
-	
-    private static final Logger logger = Logger.getLogger(DaoFactory.class);
 
-    public abstract DaoConnection getConnection();
-    /*   public abstract UserDao createUserDao();
-    public abstract PublisherDao createPublisherDao();
-    public abstract PeriodicalCategoryDao createPeriodicalCategoryDao();
-    public abstract PeriodicalDao createPeriodicalDao();
-    public abstract SubscriptionDao createSubscriptionDao();
-    public abstract InvoiceDao createInvoiceDao();*/
+	private static final Logger logger = Logger.getLogger(DaoFactory.class);
 
-    public abstract UserDao createUserDao(DaoConnection connection);
-    public abstract PublisherDao createPublisherDao(DaoConnection connection);
-    public abstract PeriodicalCategoryDao createPeriodicalCategoryDao(DaoConnection connection);
-    public abstract PeriodicalDao createPeriodicalDao(DaoConnection connection);
-    public abstract SubscriptionDao createSubscriptionDao(DaoConnection connection);
-    public abstract InvoiceDao createInvoiceDao(DaoConnection connection);
+	/**
+	 * The method retrieves {@code DaoConnection} object from the connection pool.
+	 *
+	 * @return {@code DaoConnection} object.
+	 */
+	public abstract DaoConnection getConnection();
 
+	/**
+	 * The method creates {@code UserDao} object.
+	 *
+	 * @param connection {@code DaoConnection} object.
+	 * @return created {@code UserDao} object.
+	 */
+	public abstract UserDao createUserDao(DaoConnection connection);
+
+	/**
+	 * The method creates {@code PublisherDao} object.
+	 *
+	 * @param connection {@code DaoConnection} object.
+	 * @return created {@code PublisherDao} object.
+	 */
+	public abstract PublisherDao createPublisherDao(DaoConnection connection);
+
+	/**
+	 * The method creates {@code PeriodicalCategoryDao} object.
+	 *
+	 * @param connection {@code DaoConnection} object.
+	 * @return created {@code PeriodicalCategoryDao} object.
+	 */
+	public abstract PeriodicalCategoryDao createPeriodicalCategoryDao(DaoConnection connection);
+
+	/**
+	 * The method creates {@code PeriodicalDao} object.
+	 *
+	 * @param connection {@code DaoConnection} object.
+	 * @return created {@code PeriodicalDao} object.
+	 */
+	public abstract PeriodicalDao createPeriodicalDao(DaoConnection connection);
+
+	/**
+	 * The method creates {@code SubscriptionDao} object.
+	 *
+	 * @param connection {@code DaoConnection} object.
+	 * @return created {@code SubscriptionDao} object.
+	 */
+	public abstract SubscriptionDao createSubscriptionDao(DaoConnection connection);
+
+	/**
+	 * The method creates {@code InvoiceDao} object.
+	 *
+	 * @param connection {@code DaoConnection} object.
+	 * @return created {@code InvoiceDao} object.
+	 */
+	public abstract InvoiceDao createInvoiceDao(DaoConnection connection);
+
+	/**
+	 * File name with properties for DB
+	 */
 	public static final String DB_FILE = "/db.properties";
+
+	/**
+	 * Factory class name. It should be change depending on which factory you use.
+	 */
 	private static final String DB_FACTORY_CLASS = "factory.class";
+
+	/**
+	 * {@code DaoFactory} instance.
+	 */
 	private static DaoFactory instance;
 
+	/**
+	 * The methods provides creating or getting already created {@code DaoFactory} object.
+	 *
+	 * @return {@code DaoFactory} object.
+	 */
 	public static DaoFactory getInstance() {
 		if (instance == null) {
 			try {
@@ -48,5 +107,4 @@ public abstract class DaoFactory {
 		}
 		return instance;
 	}
-
 }

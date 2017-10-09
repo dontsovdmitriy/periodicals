@@ -14,7 +14,7 @@ import java.sql.*;
 
 public class JdbcDaoFactory extends DaoFactory {
 
-    private static final Logger logger = Logger.getLogger(JdbcDaoFactory.class);
+	private static final Logger logger = Logger.getLogger(JdbcDaoFactory.class);
 	private static DataSource dataSource;
 
 	public JdbcDaoFactory() {
@@ -26,71 +26,16 @@ public class JdbcDaoFactory extends DaoFactory {
 			throw new RuntimeException(e);
 		}
 	}
-	
+
 	@Override
 	public DaoConnection getConnection() {
 		try {
 			return new JdbcDaoConnection(dataSource.getConnection());
 		} catch (SQLException e) {
-            logger.error("Error during the DaoConnection getting: ", e);
+			logger.error("Error during the DaoConnection getting: ", e);
 			throw new RuntimeException(e);
 		}
 	}
-	//TODO Удалить
-/*	@Override
-	public UserDao createUserDao() {
-		try {
-			return new JdbcUserDao(dataSource.getConnection() , true);
-		} catch (SQLException e) {
-			throw new RuntimeException(e) ;
-		}
-	}
-	
-	@Override
-	public PublisherDao createPublisherDao() {
-		try {
-			return new JdbcPublisherDao(dataSource.getConnection() , true);
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-	}
-	
-	@Override
-	public PeriodicalDao createPeriodicalDao() {
-		try {
-			return new JdbcPeriodicalDao(dataSource.getConnection() , true);
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-	}
-	
-	@Override
-	public SubscriptionDao createSubscriptionDao() {
-		try {
-			return new JdbcSubscriptionDao(dataSource.getConnection() , true);
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-	}
-	
-	@Override
-	public PeriodicalCategoryDao createPeriodicalCategoryDao() {
-		try {
-			return new JdbcPeriodicalCategoryDao(dataSource.getConnection() , true);
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-	}
-	
-	//TODO зачем и пустое и такое
-		@Override
-		public InvoiceDao createInvoiceDao() {
-			try {
-				return new JdbcInvoiceDao(dataSource.getConnection() , true);
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
-			}
-		}*/
 
 	@Override
 	public UserDao createUserDao(DaoConnection connection) {

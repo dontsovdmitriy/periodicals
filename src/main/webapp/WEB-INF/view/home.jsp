@@ -16,7 +16,11 @@
 				<p><fmt:message key="home.label.welcome" /> ${sessionScope.user.name}</p><br>
 			</c:when>
 		</c:choose>
-		${message}
+		<c:choose>
+			<c:when test="${not empty message}">
+				<fmt:message key="${message}" />
+			</c:when>
+		</c:choose>
 	</div>
 </body>
 </html>

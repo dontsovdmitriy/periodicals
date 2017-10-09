@@ -61,7 +61,7 @@ public class PeriodicalCategory {
 	}
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+	    return String.format("PeriodicalCategory{id=%d, categoryName='%s'}",
+        id, categoryName);
 	}
 }

@@ -10,29 +10,17 @@ import model.dao.interfaces.PublisherDao;
 import model.entity.periodical.Publisher;
 
 public class JdbcPublisherDao implements PublisherDao {
-	
-    private static final Logger logger = Logger.getLogger(JdbcPublisherDao.class);
+
+	private static final Logger logger = Logger.getLogger(JdbcPublisherDao.class);
 
 	private static final String INSERT_PUBLISHER = "INSERT INTO publishers " + "(publisher) " + "VALUES (?)";
 	private static final String IS_PUBLISHER_EXISTS = "SELECT COUNT(id) FROM publishers WHERE publisher = ?";
 	private static final String SELECT_ALL_PUBLISHERS = "SELECT * FROM publishers";
 	private static final String SELECT_FROM_PUBLISHER_BY_ID = "SELECT * FROM publishers WHERE id = ?";
 
-	private final boolean connectionShouldBeClosed;
 	private Connection connection;
 
-	JdbcPublisherDao(Connection connection) {
-		this.connection = connection;
-		connectionShouldBeClosed = false;
-	}
-
-	public JdbcPublisherDao(Connection connection, boolean connectionShouldBeClosed) {
-
-		this.connectionShouldBeClosed = connectionShouldBeClosed;
-		this.connection = connection;
-	}
-
-	public void setConnection(Connection connection) {
+	public JdbcPublisherDao(Connection connection) {
 		this.connection = connection;
 	}
 
@@ -48,7 +36,7 @@ public class JdbcPublisherDao implements PublisherDao {
 
 		} catch (SQLException e) {
 			String message = String.format("Exception during find  all publisher");
-            logger.error( message , e);
+			logger.error( message , e);
 			throw new RuntimeException(message, e);
 		}
 		return resultList;
@@ -66,10 +54,10 @@ public class JdbcPublisherDao implements PublisherDao {
 			} else {
 				return -1L;
 			}
-
+			
 		} catch (SQLException e) {
 			String message = String.format("Exception during add a publisher with name = %s", publisher.getPublisher());
-            logger.error( message , e);
+			logger.error( message , e);
 			throw new RuntimeException(message, e);
 		}
 	}
@@ -77,13 +65,6 @@ public class JdbcPublisherDao implements PublisherDao {
 	@Override
 	public long update(Publisher e) {
 		return 0;
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void delete(long id) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -96,7 +77,7 @@ public class JdbcPublisherDao implements PublisherDao {
 
 		} catch (SQLException e) {
 			String message = String.format("Exception during find publisher = %s", publisher);
-            logger.error( message , e);
+			logger.error( message , e);
 			throw new RuntimeException(message, e);
 		}
 	}
@@ -112,7 +93,7 @@ public class JdbcPublisherDao implements PublisherDao {
 			}
 		} catch (SQLException e) {
 			String message = String.format("Exception during find  publisher with id= " + id);
-            logger.error( message , e);
+			logger.error( message , e);
 			throw new RuntimeException(message, e);
 		}
 		return result;

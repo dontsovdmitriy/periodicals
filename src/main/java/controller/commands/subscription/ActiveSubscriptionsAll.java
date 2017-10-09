@@ -1,4 +1,4 @@
-package controller.commands.view;
+package controller.commands.subscription;
 
 import java.io.IOException;
 
@@ -11,7 +11,13 @@ import controller.commands.Command;
 import model.service.SubscriptionService;
 import model.service.impl.SubscriptionServiceImpl;
 
+/**
+ * The class describes the {@code Command} interface implementation.
+ * It contains a method for showing active subscriptions of all users
+ */
 public class ActiveSubscriptionsAll implements Command {
+	
+	private static final String PAGE_TO_GO = "/WEB-INF/view/subscriptionView.jsp";
 	
 	private static final Logger logger = Logger.getLogger(ActiveSubscriptionsAll.class);
 	private SubscriptionService subscriptionService = SubscriptionServiceImpl.getInstance();
@@ -24,7 +30,6 @@ public class ActiveSubscriptionsAll implements Command {
 				
 		logger.info("User " + session.getAttribute("user").toString() + " view all  user active subscription ");
 
-		return "/WEB-INF/view/subscriptionView.jsp";
+		return PAGE_TO_GO;
 	}
-
 }

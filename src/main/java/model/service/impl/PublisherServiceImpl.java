@@ -43,7 +43,6 @@ public class PublisherServiceImpl implements PublisherService {
 			}
 			logger.info("Publisher with name = "  + publisher.getPublisher() + " didn't add to DB");
 			return false;
-
 		}
 	}
 	public List<Publisher> findAll(){

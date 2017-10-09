@@ -45,13 +45,13 @@
    		<div class="form-group">
      		 <label class="control-label col-sm-2" for="password"><fmt:message key="login.label.password" />:</label>
      		  <div class="col-sm-6">
-     		 	<input type="text" class="form-control" id="password" name="password">
+     		 	<input type="password" class="form-control" id="password" name="password">
      		 </div>
    		</div>
    		<div class="form-group">
      		 <label class="control-label col-sm-2" for="passwordConfirm"><fmt:message key="login.label.passwordConfirm" />:</label>
      		  <div class="col-sm-6">
-     		 	<input type="text" class="form-control" id="passwordConfirm" name="passwordConfirm">
+     		 	<input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm">
      		 </div>
    		</div>
    		 <div class="form-group">        

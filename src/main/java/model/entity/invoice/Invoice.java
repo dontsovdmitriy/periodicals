@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 import model.entity.subscription.Subscription;
 
-//TODO нужно ли делать сущности Serialasible?
 public class Invoice {
 	private long id;
 	private long cost;
@@ -153,7 +152,8 @@ public class Invoice {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+		 return String.format("User{id=%d, cost=%d, creationDate='%s', paymentDate='%s', " +
+                 "subscription='%s', status='%s'}",
+         id, cost, creationDate, paymentDate, subscription, status);
 	}
 }

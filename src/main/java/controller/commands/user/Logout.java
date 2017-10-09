@@ -1,4 +1,4 @@
-package controller.commands;
+package controller.commands.user;
 
 import java.io.IOException;
 
@@ -7,7 +7,15 @@ import javax.servlet.http.*;
 
 import org.apache.log4j.Logger;
 
+import controller.commands.Command;
+
+/**
+ * The class describes the {@code Command} interface implementation.
+ * It contains a method for user logout
+ */
 public class Logout implements Command {
+
+	private static final String PAGE_TO_GO = "/WEB-INF/view/home.jsp";
 
 	private static final Logger logger = Logger.getLogger(Logout.class);
 
@@ -21,7 +29,6 @@ public class Logout implements Command {
 			session.invalidate();
 		}
 		
-		return "/WEB-INF/view/home.jsp";
+		return PAGE_TO_GO;
 	}
-
 }

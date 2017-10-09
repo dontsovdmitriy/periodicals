@@ -1,4 +1,4 @@
-package controller.commands.view;
+package controller.commands.invoice;
 
 import java.io.IOException;
 
@@ -12,7 +12,13 @@ import model.entity.user.User;
 import model.service.InvoiceService;
 import model.service.impl.InvoiceServiceImpl;
 
+/**
+ * The class describes the {@code Command} interface implementation.
+ * It contains a method for showing paid invoices
+ */
 public class InvoiceByTypePaid implements Command {
+
+	private static final String PAGE_TO_GO = "/WEB-INF/view/invoiceView.jsp";
 
 	private static final Logger logger = Logger.getLogger(InvoiceByTypePaid.class);
 	private InvoiceService invoiceService = InvoiceServiceImpl.getInstance();
@@ -28,8 +34,6 @@ public class InvoiceByTypePaid implements Command {
 
 		logger.info("User " + session.getAttribute("user").toString() + " entered invoice paid view");
 
-		return "/WEB-INF/view/invoiceView.jsp";
-		
+		return PAGE_TO_GO;	
 	}
-
 }

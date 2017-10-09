@@ -1,4 +1,4 @@
-package controller.commands.view;
+package controller.commands.invoice;
 
 import java.io.IOException;
 
@@ -12,7 +12,13 @@ import model.entity.user.User;
 import model.service.InvoiceService;
 import model.service.impl.InvoiceServiceImpl;
 
+/**
+ * The class describes the {@code Command} interface implementation.
+ * It contains a method for showing unpaid invoices
+ */
 public class InvoiceByTypeUnpaid implements Command {
+
+	private static final String PAGE_TO_GO = "/WEB-INF/view/invoiceView.jsp";
 
 	private static final Logger logger = Logger.getLogger(InvoiceByTypeUnpaid.class);
 	private InvoiceService invoiceService = InvoiceServiceImpl.getInstance();
@@ -25,11 +31,9 @@ public class InvoiceByTypeUnpaid implements Command {
 		User user = (User) session.getAttribute("user");
 
 		session.setAttribute("invoiceList", invoiceService.findInvoiceByStatusUnpaid(user));
-		
+
 		logger.info("User " + session.getAttribute("user").toString() + " entered invoice unpaid view");
 
-		return "/WEB-INF/view/invoiceView.jsp";
-		
+		return PAGE_TO_GO;		
 	}
-
 }

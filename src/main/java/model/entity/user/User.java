@@ -163,8 +163,9 @@ public class User {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+        return String.format("User{id=%d,name='%s' surname='%s', mobilePhone='%s', " +
+                "email='%s', type='%s', login=%s}",
+        id, name, surname, mobilePhone, email, type, login);
 	}	
 }
 

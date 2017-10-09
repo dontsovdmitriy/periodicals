@@ -146,7 +146,8 @@ public class Periodical {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+		 return String.format("Periodical{id=%d,name='%s' description='%s', costPerMonth=%d, " +
+	                "publisher='%s', periodicalCategory='%s', status='%s'}",
+	                id, name, description, costPerMonth, publisher, periodicalCategory, status);
 	}		
 }

@@ -1,4 +1,4 @@
-package controller.commands;
+package controller.commands.user;
 
 import java.io.IOException;
 
@@ -7,13 +7,20 @@ import javax.servlet.http.*;
 
 import org.apache.log4j.Logger;
 
+import controller.commands.Command;
 import controller.validation.*;
 import model.entity.user.User;
 import model.service.UserService;
 import model.service.impl.UserServiceImpl;
 
+/**
+ * The class describes the {@code Command} interface implementation.
+ * It contains a method for adding a new user
+ */
 public class AddRegistrationUser implements Command {
-	
+
+	private static final String PAGE_TO_GO = "/WEB-INF/view/home.jsp";
+
 	private static final Logger logger = Logger.getLogger(AddRegistrationUser.class);
 
 	private static final String PARAM_NAME = "name";
@@ -24,19 +31,26 @@ public class AddRegistrationUser implements Command {
 	private static final String PARAM_PASSWORD = "password";
 	private static final String PARAM_PASSWORD_CONFIRM = "passwordConfirm";
 
-	private static final String REGULAR_EXP_CONFIRM_ERROR = "Регистрация не прошла проверку регулярки или пароль не соответсвует подтверженному";
-	private static final String ADD_SUCCESSFUL = "Регистрация добавлена";
-	private static final String ADD_UNSUCCESSFUL = "Регистрация не добавлена";
-	private static final String NULL_ERROR = "Регистрация содержит незаполненые значения ";
+	private static final String REGULAR_EXP_CONFIRM_ERROR = "addResitrationUser.message.regularExp.error";
+	private static final String ADD_SUCCESSFUL = "addResitrationUser.message.addSuccessful";
+	private static final String ADD_UNSUCCESSFUL = "addResitrationUser.message.addUnsuccessful";
+	private static final String NULL_ERROR = "addResitrationUser.message.nullValue";
 
-	private UserService userService = UserServiceImpl.getInstance();
-	private InputCheckingService checkingService = new InputCheckingServiceImpl();
+	private UserService userService;
+	private InputCheckingService checkingService;
+	
+	public AddRegistrationUser() {
+		this.userService = UserServiceImpl.getInstance();;
+		this.checkingService = new InputCheckingServiceImpl();
+	}
+	public AddRegistrationUser(UserService userService, InputCheckingService checkingService) {
+		this.userService = userService;
+		this.checkingService = checkingService;
+	}
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		String pageToGo="/WEB-INF/view/home.jsp";
 
 		String name = request.getParameter(PARAM_NAME);
 		String surname = request.getParameter(PARAM_SURNAME);
@@ -50,7 +64,7 @@ public class AddRegistrationUser implements Command {
 				|| login == null || password ==null || passwordConfirm ==null) {
 			request.setAttribute("message", NULL_ERROR);
 			logger.error("Errors occurred with registration User. " + NULL_ERROR);
-			return pageToGo;
+			return PAGE_TO_GO;
 		}
 
 		User user = new User.Builder()
@@ -63,20 +77,20 @@ public class AddRegistrationUser implements Command {
 				.setType(User.Type.USER)
 				.build();
 
-		if(!checkingService.checkRegistrationForm(user) && password.equals(passwordConfirm)){
+		if(!checkingService.checkRegistrationForm(user) || !password.equals(passwordConfirm)){
 			request.setAttribute("message", REGULAR_EXP_CONFIRM_ERROR);
-			logger.error("Errors occurred with registration User. " + REGULAR_EXP_CONFIRM_ERROR);
-			return pageToGo;
+			logger.error("Errors occurred with registration User. " + "The registration contains blank values.");
+			return PAGE_TO_GO;
 		}
-		
+
 		if (userService.addUser(user)) {
 			request.setAttribute("message", ADD_SUCCESSFUL);
-			logger.info("User with id " + user.getId() + ADD_SUCCESSFUL);
-			return pageToGo;
+			logger.info("User with id " + user.getId() + "User registration successful");
+			return PAGE_TO_GO;
 		} 
-		
+
 		request.setAttribute("message", ADD_UNSUCCESSFUL);
-		logger.error("Errors occurred with registration User. "  + REGULAR_EXP_CONFIRM_ERROR);
-		return pageToGo;
+		logger.error("Errors occurred with registration User. "  + "The registration data was not entered correctly.");
+		return PAGE_TO_GO;
 	}
 }

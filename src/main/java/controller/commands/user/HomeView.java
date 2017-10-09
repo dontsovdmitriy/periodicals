@@ -1,4 +1,4 @@
-package controller.commands.view;
+package controller.commands.user;
 
 import java.io.IOException;
 
@@ -9,7 +9,13 @@ import org.apache.log4j.Logger;
 
 import controller.commands.Command;
 
+/**
+ * The class describes the {@code Command} interface implementation.
+ * It contains a method for redirect to a home page
+ */
 public class HomeView implements Command{
+
+	private static final String PAGE_TO_GO = "/WEB-INF/view/home.jsp";
 
 	private static final Logger logger = Logger.getLogger(HomeView.class);
 
@@ -18,9 +24,7 @@ public class HomeView implements Command{
 			throws ServletException, IOException {
 
 		logger.info("User entered home view");
-		
-		return "/WEB-INF/view/home.jsp";
 
+		return PAGE_TO_GO;
 	}
-
 }
