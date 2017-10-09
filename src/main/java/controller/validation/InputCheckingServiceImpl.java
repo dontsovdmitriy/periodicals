@@ -10,10 +10,10 @@ import model.entity.user.User;
 public class InputCheckingServiceImpl implements InputCheckingService{
 
 	public static final String NAME_REGEX = "[A-Za-zЄ-ЯҐа-їґ]{2,50}";
-	public static final String PERIODICAL_NAME_REGEX = "[A-Za-zЄ-ЯҐа-їґ0-9'\\.\\-\\s\\,]{2,50}";
+	public static final String PERIODICAL_NAME_REGEX = "[A-Za-zЄ-ЯҐа-їґ0-9'\\.\\-\\s\\,\\;\\:\\»\\«\\“\\”]{2,200}";
 	public static final String MONEY_REGEX = "[0-9]+([,.][0-9]{1,2})?";
-	public static final String DESCRIPTION_REGEX = "[A-Za-zЄ-ЯҐа-їґ0-9'\\.\\-\\s\\,]{2,500}";
-	public static final String PUBLISHER_REGEX = "[A-Za-zЄ-ЯҐа-їґ]{2,50}";
+	public static final String DESCRIPTION_REGEX = "[A-Za-zЄ-ЯҐа-їґ0-9'\\.\\-\\s\\,\\;\\»\\«\\“\\”]{2,500}";
+	public static final String PUBLISHER_REGEX = "[A-Za-zЄ-ЯҐа-їґ0-9'\\.\\-\\s\\,\\;\\:]{2,50}";
 	public static final String PHONE_NUMBER_REGEX = "\\d{10}|(?:\\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3}-?\\d{4}";
 	public static final String EMAIL_REGEX = "([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$";
 	public static final String LOGIN_REGEX = "[A-Za-z0-9_-]{3,16}";

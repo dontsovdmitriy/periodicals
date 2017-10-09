@@ -17,7 +17,7 @@ import model.service.impl.SubscriptionServiceImpl;
  */
 public class ActiveSubscriptionsAll implements Command {
 	
-	private static final String PAGE_TO_GO = "/WEB-INF/view/subscriptionView.jsp";
+	private static final String PAGE_TO_GO = "/WEB-INF/view/subscription/subscriptionView.jsp";
 	
 	private static final Logger logger = Logger.getLogger(ActiveSubscriptionsAll.class);
 	private SubscriptionService subscriptionService = SubscriptionServiceImpl.getInstance();

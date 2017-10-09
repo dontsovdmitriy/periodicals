@@ -59,11 +59,10 @@ public class AddCategory implements Command {
 		if (categoryService.addCategory(category)) {
 			request.setAttribute("message", ADD_SUCCESSFUL);
 			logger.info("User " + session.getAttribute("user").toString() + " entered category " + category.getCategoryName());
-			return PAGE_TO_GO; 
+		} else {
+			request.setAttribute("message", ADD_UNSUCCESSFUL);
+			logger.error("Errors occurred with User " + session.getAttribute("user").toString() + ". " + " Category not added");
 		}
-
-		request.setAttribute("message", ADD_UNSUCCESSFUL);
-		logger.error("Errors occurred with User " + session.getAttribute("user").toString() + ". " + " Category not added");
 		return PAGE_TO_GO; 
 	}
 }

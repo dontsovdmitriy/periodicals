@@ -47,7 +47,6 @@ public class FrontController extends HttpServlet {
 		commands.put("GET:/subscription", new SubscriptionView());
 		commands.put("GET:/category", new CategoryView());
 		commands.put("GET:/publisher", new PublisherView());
-		commands.put("GET:/result", new ResultView());
 		commands.put("GET:/login", new LoginView());
 		commands.put("GET:/home", new HomeView());
 		commands.put("GET:/editPeriodicalView", new EditPeriodicalView());
@@ -56,8 +55,8 @@ public class FrontController extends HttpServlet {
 		commands.put("GET:/invoicePayView",new InvoicePayView());
 		commands.put("GET:/showInvoiceByTypePaid", new InvoiceByTypePaid());
 		commands.put("GET:/showInvoiceByTypeUnpaid", new InvoiceByTypeUnpaid());
-
 	}
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
 
@@ -81,7 +80,6 @@ public class FrontController extends HttpServlet {
 		String key = method+":"+path;
 		Command command = commands.getOrDefault(key, (req , resp)->"/index.jsp" ); 
 		String viewPage = command.execute(request, response);
-
 		request.getRequestDispatcher(viewPage).forward(request, response);
 	}
 }

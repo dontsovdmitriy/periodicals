@@ -26,7 +26,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#"><fmt:message key="navbar.label.brand" /></a>
+      <a class="navbar-brand"><fmt:message key="navbar.label.brand" /></a>
     </div>
     <div class="collapse navbar-collapse myNavbar">
     <c:if test="${not empty sessionScope.user}">

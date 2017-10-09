@@ -17,7 +17,7 @@ import model.service.impl.PeriodicalServiceImpl;
  */
 public class SubscriptionView implements Command {
 	
-	private static final String PAGE_TO_GO = "/WEB-INF/view/addSubscription.jsp";
+	private static final String PAGE_TO_GO = "/WEB-INF/view/subscription/addSubscription.jsp";
 
     private static final Logger logger = Logger.getLogger(SubscriptionView.class);
 	private PeriodicalService periodicalService = PeriodicalServiceImpl.getInstance();

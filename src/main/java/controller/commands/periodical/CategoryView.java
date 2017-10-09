@@ -15,7 +15,7 @@ import controller.commands.Command;
  */
 public class CategoryView implements Command {
 
-	private static final String PAGE_TO_GO = "/WEB-INF/view/addCategory.jsp";
+	private static final String PAGE_TO_GO = "/WEB-INF/view/periodical/addCategory.jsp";
 
 	private static final Logger logger = Logger.getLogger(CategoryView.class);
 	@Override

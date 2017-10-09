@@ -15,7 +15,7 @@ import controller.commands.Command;
  */
 public class PublisherView implements Command{
 
-	private static final String PAGE_TO_GO = "/WEB-INF/view/addPublisher.jsp";
+	private static final String PAGE_TO_GO = "/WEB-INF/view/periodical/addPublisher.jsp";
 
 	private static final Logger logger = Logger.getLogger(PublisherView.class);
 

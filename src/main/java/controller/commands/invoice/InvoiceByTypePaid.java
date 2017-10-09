@@ -18,7 +18,7 @@ import model.service.impl.InvoiceServiceImpl;
  */
 public class InvoiceByTypePaid implements Command {
 
-	private static final String PAGE_TO_GO = "/WEB-INF/view/invoiceView.jsp";
+	private static final String PAGE_TO_GO = "/WEB-INF/view/invoice/invoiceView.jsp";
 
 	private static final Logger logger = Logger.getLogger(InvoiceByTypePaid.class);
 	private InvoiceService invoiceService = InvoiceServiceImpl.getInstance();

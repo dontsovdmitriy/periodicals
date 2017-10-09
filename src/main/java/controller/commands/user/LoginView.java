@@ -15,7 +15,7 @@ import controller.commands.Command;
  */
 public class LoginView implements Command {
 
-	private static final String PAGE_TO_GO = "/WEB-INF/view/login.jsp";
+	private static final String PAGE_TO_GO = "/WEB-INF/view/user/login.jsp";
 
     private static final Logger logger = Logger.getLogger(LoginView.class);
 	

@@ -38,7 +38,7 @@ public class AddRegistrationUser implements Command {
 
 	private UserService userService;
 	private InputCheckingService checkingService;
-	
+
 	public AddRegistrationUser() {
 		this.userService = UserServiceImpl.getInstance();;
 		this.checkingService = new InputCheckingServiceImpl();
@@ -86,11 +86,10 @@ public class AddRegistrationUser implements Command {
 		if (userService.addUser(user)) {
 			request.setAttribute("message", ADD_SUCCESSFUL);
 			logger.info("User with id " + user.getId() + "User registration successful");
-			return PAGE_TO_GO;
-		} 
-
-		request.setAttribute("message", ADD_UNSUCCESSFUL);
-		logger.error("Errors occurred with registration User. "  + "The registration data was not entered correctly.");
+		} else {
+			request.setAttribute("message", ADD_UNSUCCESSFUL);
+			logger.error("Errors occurred with registration User. "  + "The registration data was not entered correctly.");
+		}
 		return PAGE_TO_GO;
 	}
 }

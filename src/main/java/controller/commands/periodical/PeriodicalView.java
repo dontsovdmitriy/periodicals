@@ -17,7 +17,7 @@ import model.service.impl.*;
  */
 public class PeriodicalView implements Command {
 
-	private static final String PAGE_TO_GO = "/WEB-INF/view/addPeriodical.jsp";
+	private static final String PAGE_TO_GO = "/WEB-INF/view/periodical/addPeriodical.jsp";
 
 	private static final Logger logger = Logger.getLogger(PeriodicalView.class);
 

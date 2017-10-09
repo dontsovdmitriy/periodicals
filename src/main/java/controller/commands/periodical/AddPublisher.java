@@ -60,11 +60,11 @@ public class AddPublisher implements Command {
 		if (publisherService.addPublisher(publisher)) {
 			request.setAttribute("message", ADD_SUCCESSFUL);
 			logger.info("User " + session.getAttribute("user").toString() + " entered publisher " + publisher.getPublisher());
+		} else {
+			request.setAttribute("message", ADD_UNSUCCESSFUL);
+			logger.error("Errors occurred with User " + session.getAttribute("user").toString() + ", " + "Publisher not added");	
 		}
-
-		request.setAttribute("message", ADD_UNSUCCESSFUL);
-		logger.error("Errors occurred with User " + session.getAttribute("user").toString() + ", " + "Publisher not added");
-		return PAGE_TO_GO;		
+		return PAGE_TO_GO;	
 	}
 }
 

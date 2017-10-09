@@ -27,7 +27,7 @@ public class Logout implements Command {
 		if (session.getAttribute("user") != null) {
 			logger.info("User " + session.getAttribute("user").toString() +  " logout successful");
 			session.invalidate();
-		}
+		} 
 		
 		return PAGE_TO_GO;
 	}

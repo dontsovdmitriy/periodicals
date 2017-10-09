@@ -15,7 +15,7 @@ import controller.commands.Command;
  */
 public class RegistrationView implements Command {
 	
-	private static final String PAGE_TO_GO = "/WEB-INF/view/registration.jsp";
+	private static final String PAGE_TO_GO = "/WEB-INF/view/user/registration.jsp";
 	
     private static final Logger logger = Logger.getLogger(RegistrationView.class);
 

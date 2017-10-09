@@ -17,9 +17,9 @@ import model.service.impl.UserServiceImpl;
  * It contains a method for user login
  */
 public class Login implements Command {
-	
+
 	private static final String PAGE_TO_GO = "/WEB-INF/view/home.jsp";
-	
+
 	private static final Logger logger = Logger.getLogger(Login.class);
 
 	private static final String PARAM_EMAIL = "email";
@@ -32,7 +32,7 @@ public class Login implements Command {
 
 	private UserService userService;
 	private InputCheckingService checkingService;
-	
+
 	public Login() {
 		this.userService = UserServiceImpl.getInstance();
 		this.checkingService = new InputCheckingServiceImpl();
@@ -44,7 +44,7 @@ public class Login implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
-			 {
+	{
 
 		String email = request.getParameter(PARAM_EMAIL);
 		String password = request.getParameter(PARAM_PASSWORD);
@@ -66,14 +66,13 @@ public class Login implements Command {
 		if (!optionalUser.isPresent()) {
 			request.setAttribute("message", LOGIN_UNSUCCESSFUL);
 			logger.error("Errors occurred User with email " + email + ". " + "User login unsuccessful");
-			return PAGE_TO_GO;
-		} 
-		
-		User user = optionalUser.get();
-		HttpSession session = request.getSession();
-		session.setAttribute("user", user);
-		request.setAttribute("message", LOGIN_SUCCESSFUL);
-		logger.info("User with email " + email +  "User login successful");
+		} else {		
+			User user = optionalUser.get();
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user);
+			request.setAttribute("message", LOGIN_SUCCESSFUL);
+			logger.info("User with email " + email +  "User login successful");
+		}
 		return PAGE_TO_GO;
 	}
 }

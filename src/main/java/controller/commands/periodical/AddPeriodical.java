@@ -98,12 +98,11 @@ public class AddPeriodical implements Command {
 		if (periodicalService.addPeriodical(periodical)) {
 			request.setAttribute("message", ADD_SUCCESSFUL);
 			logger.info("User " + session.getAttribute("user").toString() + " entered periodical " + periodical.getName());
-			return PAGE_TO_GO;			
-		} 
-
-		request.setAttribute("message", ADD_UNSUCCESSFUL);
-		logger.error("Errors occurred with User " + session.getAttribute("user").toString() + ", " + " Periodical not added");
-		return PAGE_TO_GO;			
+		}  else {
+			request.setAttribute("message", ADD_UNSUCCESSFUL);
+			logger.error("Errors occurred with User " + session.getAttribute("user").toString() + ", " + " Periodical not added");
+		}
+		return PAGE_TO_GO;
 	}
 }
 

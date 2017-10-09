@@ -24,9 +24,9 @@ import model.service.impl.*;
  * It contains a method for adding a subscription
  */
 public class AddSubscription implements Command {
-	
+
 	private static final String PAGE_TO_GO = "/WEB-INF/view/home.jsp";
-	
+
 	private static final Logger logger = Logger.getLogger(AddSubscription.class);
 
 	private static final String PARAM_PERIODICAL = "periodical";
@@ -62,7 +62,7 @@ public class AddSubscription implements Command {
 			logger.error("Errors occurred with User " + session.getAttribute("user").toString() + ". " + "The subscription contains blank values.");
 			return PAGE_TO_GO;
 		}
-		
+
 		int numberMonth = Integer.parseInt(numberMonthStr);
 		if (numberMonth<0) {
 			request.setAttribute("message", MONTH_ERROR);
@@ -80,7 +80,7 @@ public class AddSubscription implements Command {
 			logger.error("Errors occurred with User " + session.getAttribute("user").toString() + ". " + "Periodical is not found in the system.");
 			return PAGE_TO_GO;
 		}
-		
+
 		Subscription subscription = new Subscription.Builder()
 				.setAddress(address)
 				.setNumberMonth(numberMonth)
@@ -94,15 +94,14 @@ public class AddSubscription implements Command {
 			logger.error("Errors occurred with User " + session.getAttribute("user").toString() + ". " + "The registration data was not entered correctly.");
 			return PAGE_TO_GO;
 		}
-		
+
 		if (subscriptionService.addSubscription(subscription)) {
 			request.setAttribute("message", ADD_SUCCESSFUL);
 			logger.info("User " + session.getAttribute("user").toString() + " entered subscription " + subscription.getId());
-			return PAGE_TO_GO;
-		} 
-		
-		request.setAttribute("message", ADD_UNSUCCESSFUL);
-		logger.error("Errors occurred with User " + session.getAttribute("user").toString() + ". " + "Subscription not added.");
+		} else {		
+			request.setAttribute("message", ADD_UNSUCCESSFUL);
+			logger.error("Errors occurred with User " + session.getAttribute("user").toString() + ". " + "Subscription not added.");
+		}
 		return PAGE_TO_GO;
 	}
 }

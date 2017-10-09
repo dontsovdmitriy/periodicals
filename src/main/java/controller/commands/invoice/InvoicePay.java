@@ -44,11 +44,10 @@ public class InvoicePay implements Command {
 		if (invoiceService.payInvoice(invoice)) {
 			request.setAttribute("message", ADD_SUCCESSFUL);
 			logger.info("User " + session.getAttribute("user").toString() + " pay invoice with id= " + invoice.getId());
-			return PAGE_TO_GO;			
-		} 
-
-		request.setAttribute("message", ADD_UNSUCCESSFUL);
-		logger.error("Errors occurred with User " + session.getAttribute("user").toString() + " paying invoice with id= " + invoice.getId());
-		return PAGE_TO_GO;		
+		} else {
+			request.setAttribute("message", ADD_UNSUCCESSFUL);
+			logger.error("Errors occurred with User " + session.getAttribute("user").toString() + " paying invoice with id= " + invoice.getId());
+		}
+		return PAGE_TO_GO;
 	}
 }
