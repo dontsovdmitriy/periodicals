@@ -15,13 +15,13 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
 	private static final Logger logger = Logger.getLogger(SubscriptionServiceImpl.class);
 
-	DaoFactory daoFactory;
+	private DaoFactory daoFactory;
 
 	private static class Holder{
 		static final SubscriptionService INSTANCE = new SubscriptionServiceImpl( DaoFactory.getInstance() ); 
 	}
 
-	SubscriptionServiceImpl(DaoFactory instance) {
+	private SubscriptionServiceImpl(DaoFactory instance) {
 		this.daoFactory = instance;
 	}
 

@@ -13,13 +13,13 @@ public class UserServiceImpl implements UserService {
 
 	private static final Logger logger = Logger.getLogger(UserServiceImpl.class);
 
-	DaoFactory daoFactory;
+	private DaoFactory daoFactory;
 
 	private static class Holder{
 		static final UserService INSTANCE = new UserServiceImpl( DaoFactory.getInstance() ); 
 	}
 
-	UserServiceImpl(DaoFactory instance) {
+	private UserServiceImpl(DaoFactory instance) {
 		this.daoFactory = instance;
 	}
 

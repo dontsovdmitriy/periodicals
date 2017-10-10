@@ -14,13 +14,13 @@ public class PeriodicalServiceImpl implements PeriodicalService {
 	
 	private static final Logger logger = Logger.getLogger(PeriodicalServiceImpl.class);
 
-	DaoFactory daoFactory;
+	private DaoFactory daoFactory;
 
 	private static class Holder{
 		static final PeriodicalService INSTANCE = new PeriodicalServiceImpl( DaoFactory.getInstance() ); 
 	}
 
-	PeriodicalServiceImpl(DaoFactory instance) {
+	private PeriodicalServiceImpl(DaoFactory instance) {
 		this.daoFactory = instance;
 	}
 

@@ -17,13 +17,13 @@ public class InvoiceServiceImpl implements InvoiceService {
 
 	private static final Logger logger = Logger.getLogger(InvoiceServiceImpl.class);
 
-	DaoFactory daoFactory;
+	private DaoFactory daoFactory;
 
 	private static class Holder{
 		static final InvoiceService INSTANCE = new InvoiceServiceImpl( DaoFactory.getInstance() ); 
 	}
 
-	InvoiceServiceImpl(DaoFactory instance) {
+	private InvoiceServiceImpl(DaoFactory instance) {
 		this.daoFactory = instance;
 	}
 

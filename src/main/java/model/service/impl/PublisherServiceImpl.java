@@ -13,13 +13,13 @@ public class PublisherServiceImpl implements PublisherService {
 	
 	private static final Logger logger = Logger.getLogger(PublisherServiceImpl.class);
 
-	DaoFactory daoFactory;
+	private DaoFactory daoFactory;
 
 	private static class Holder{
 		static final PublisherService INSTANCE = new PublisherServiceImpl( DaoFactory.getInstance() ); 
 	}
 
-	PublisherServiceImpl(DaoFactory instance) {
+	private PublisherServiceImpl(DaoFactory instance) {
 		this.daoFactory = instance;
 	}
 

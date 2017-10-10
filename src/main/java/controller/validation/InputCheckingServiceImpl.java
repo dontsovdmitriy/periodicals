@@ -55,7 +55,6 @@ public class InputCheckingServiceImpl implements InputCheckingService{
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 		String startDate = subscription.getStartDate().format(formatter);
-		System.out.println(startDate);
 
 		return 	startDate.matches(DATE_REGEX) &&
 				String.valueOf(subscription.getNumberMonth()).matches(NUMBER_MONTH_REGEX) &&

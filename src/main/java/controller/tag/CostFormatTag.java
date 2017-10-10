@@ -23,7 +23,7 @@ public class CostFormatTag extends TagSupport {
 	@Override
 	public int doStartTag() throws JspException {
 
-		DecimalFormat f = new DecimalFormat(",##0.00;-,##0.00");
+		DecimalFormat f = new DecimalFormat("#,##0.00;-#,##0.00");
 
 		f.format(cost/100.0);
 		String formattedCost = f.format(cost/100.0);
