@@ -45,7 +45,6 @@ public class Login implements Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 	{
-
 		String email = request.getParameter(PARAM_EMAIL);
 		String password = request.getParameter(PARAM_PASSWORD);
 

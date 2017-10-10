@@ -40,7 +40,7 @@ public class AddRegistrationUser implements Command {
 	private InputCheckingService checkingService;
 
 	public AddRegistrationUser() {
-		this.userService = UserServiceImpl.getInstance();;
+		this.userService = UserServiceImpl.getInstance();
 		this.checkingService = new InputCheckingServiceImpl();
 	}
 	public AddRegistrationUser(UserService userService, InputCheckingService checkingService) {
